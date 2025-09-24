@@ -1,0 +1,44 @@
+LLM App - Environment & Installation (Windows PowerShell)
+
+1) Install Python (if needed)
+   - Download from: https://www.python.org/downloads/
+   - Check "Add Python to PATH" during install.
+   - Ensure components include: pip and venv.
+   - Disable Windows Store aliases: Settings > Apps > Advanced app settings > App execution aliases > turn off python/python3.
+
+2) Verify Python and pip
+   - py -V
+   - py -m ensurepip --upgrade
+   - py -m pip --version
+
+3) Create and activate a virtual environment
+   - py -m venv .venv
+   - . .venv\Scripts\Activate.ps1
+   - python -m pip install --upgrade pip
+
+4) Install dependencies
+   - pip install -r requirements.txt
+
+5) Configure environment variables (optional)
+   Set in the current PowerShell session:
+   - $env:OLLAMA_HOST = "http://127.0.0.1:11434"
+   - $env:OLLAMA_MODEL = "qwen2.5:7b"
+   - $env:SYSTEM_PROMPT = "You are helpful and concise."
+
+   Or create a .env file in project root (auto-loaded):
+   OLLAMA_HOST=http://127.0.0.1:11434
+   OLLAMA_MODEL=qwen2.5:7b
+   SYSTEM_PROMPT=You are helpful and concise.
+
+6) Prepare Ollama
+   - Install Ollama: https://ollama.com/download
+   - Start Ollama service/app.
+   - Pull model: ollama pull qwen2.5:7b
+
+7) Run the app
+   - streamlit run app.py
+
+Troubleshooting
+- If "python" invokes Microsoft Store, use the Python launcher "py" or disable aliases as above.
+- If pip is missing: py -m ensurepip --upgrade
+- If packages fail to build, ensure you are inside the virtual environment and pip is upgraded.
